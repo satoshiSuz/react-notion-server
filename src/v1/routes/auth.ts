@@ -4,6 +4,7 @@ import { body } from 'express-validator';
 import 'dotenv/config';
 import { validate } from '../handlers/validation';
 import { register, login } from '../controllers/user';
+import { verifyToken } from '../handlers/tokenHandler';
 const router = express.Router();
 
 //ユーザー新規登録API
@@ -40,6 +41,15 @@ router.post(
     .withMessage('パスワードは8文字以上である必要があります'),
   validate,
   login
+);
+
+//JKT認証API
+router.post(
+  '/verify-token',
+  verifyToken,
+  (req: express.Request, res: express.Response) => {
+    return res.status(200).json({ user: req.body.user });
+  }
 );
 
 module.exports = router;

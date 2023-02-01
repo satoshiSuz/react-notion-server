@@ -10,7 +10,6 @@ export const register = async (req: express.Request, res: express.Response) => {
   // console.log(req.body.password);
   const password: string = req.body.password;
   try {
-    console.log(password);
     //パスワードの暗号化
     assertIsDefined(process.env.SECRET_KEY);
     req.body.password = AES.encrypt(

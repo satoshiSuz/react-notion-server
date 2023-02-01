@@ -2,14 +2,20 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import { assertIsDefined } from './src/v1/helpers/assert';
+import cors from 'cors';
 
 const app: express.Express = express();
 const PORT = 3001;
 mongoose.set('strictQuery', false);
 
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/v1', require('./src/v1/routes/auth'));
+app.use('/api/v1', require('./src/v1/routes'));
 
 //DB接続
 try {
