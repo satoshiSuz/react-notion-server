@@ -5,14 +5,10 @@ import { assertIsDefined } from './src/v1/helpers/assert';
 import cors from 'cors';
 
 const app: express.Express = express();
-const PORT = 3001;
+const PORT = 3000;
 mongoose.set('strictQuery', false);
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1', require('./src/v1/routes'));
