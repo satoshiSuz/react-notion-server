@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://notion-clone-client.onrender.com/',
+      'https://notion-clone-client.onrender.com',
     ],
   })
 );
